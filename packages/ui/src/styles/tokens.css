@@ -16,7 +16,7 @@
    Built to Apple's Human Interface Guidelines: 44px minimum touch targets,
    the iOS type ramp, continuous-looking corner radii, system-grey neutrals,
    translucent materials, and Apple's standard spring easing, with a teal
-   accent (#0f6e5e) that a workspace can override at runtime (brand colour).
+   accent (#5b55d7) that a workspace can override at runtime (brand colour).
 
    Everything downstream (the primitives in @open-hrms/ui, every page in both
    apps) pulls from these tokens, change a value here and both apps follow.
@@ -164,15 +164,15 @@
   --input: #d8d8dd;
 
   /* ── Brand: the default teal, overridable per workspace. ──────────── */
-  --primary: #0f6e5e;
+  --primary: #5b55d7;
   --primary-foreground: #ffffff;
-  --accent: #e7f2ef;
-  --accent-foreground: #0a5447;
-  --ring: #0f6e5e;
+  --accent: #eeedff;
+  --accent-foreground: #423bb1;
+  --ring: #5b55d7;
 
   /* ── Apple system colours (semantic states). ────────────────────────── */
   --destructive: #d70015; /* systemRed */
-  --chart-1: #0f6e5e;
+  --chart-1: #5b55d7;
   --chart-2: #007aff; /* systemBlue */
   --chart-3: #ff9500; /* systemOrange */
   --chart-4: #af52de; /* systemPurple */
@@ -180,12 +180,12 @@
 
   --sidebar: #ffffff;
   --sidebar-foreground: #1d1d1f;
-  --sidebar-primary: #0f6e5e;
+  --sidebar-primary: #5b55d7;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #e7f2ef;
-  --sidebar-accent-foreground: #0a5447;
+  --sidebar-accent: #eeedff;
+  --sidebar-accent-foreground: #423bb1;
   --sidebar-border: #d8d8dd;
-  --sidebar-ring: #0f6e5e;
+  --sidebar-ring: #5b55d7;
 
   /* ── Semantic tokens used across pages for tags/badges/status. ──────── */
   --ink-2: #3c3c43;
@@ -194,12 +194,12 @@
   --line: #d8d8dd;
   --line-2: #e9e9ed;
   --hairline: rgba(60, 60, 67, 0.29); /* Apple separator */
-  --accent-50: #e7f2ef;
-  --accent-100: #cfe6e0;
-  --accent-700: #0a5447;
+  --accent-50: #eeedff;
+  --accent-100: #d9d5ff;
+  --accent-700: #423bb1;
   --coral: #ff3b30;
-  --ok: #0f6e5e;
-  --ok-bg: #e7f2ef;
+  --ok: #5b55d7;
+  --ok-bg: #eeedff;
   --warn: #b25000;
   --warn-bg: #fff4e5;
   --bad: #d70015;
@@ -239,14 +239,14 @@
   --border: #38383a;
   --input: #48484a;
 
-  --primary: #2fb89c;
-  --primary-foreground: #00201a;
-  --accent: #16302b;
-  --accent-foreground: #6fd8bf;
-  --ring: #2fb89c;
+  --primary: #8c87ff;
+  --primary-foreground: #11102d;
+  --accent: #242345;
+  --accent-foreground: #c1beff;
+  --ring: #8c87ff;
 
   --destructive: #ff453a;
-  --chart-1: #2fb89c;
+  --chart-1: #8c87ff;
   --chart-2: #0a84ff;
   --chart-3: #ff9f0a;
   --chart-4: #bf5af2;
@@ -254,12 +254,12 @@
 
   --sidebar: #1c1c1e;
   --sidebar-foreground: #f5f5f7;
-  --sidebar-primary: #2fb89c;
-  --sidebar-primary-foreground: #00201a;
-  --sidebar-accent: #16302b;
-  --sidebar-accent-foreground: #6fd8bf;
+  --sidebar-primary: #8c87ff;
+  --sidebar-primary-foreground: #11102d;
+  --sidebar-accent: #242345;
+  --sidebar-accent-foreground: #c1beff;
   --sidebar-border: #38383a;
-  --sidebar-ring: #2fb89c;
+  --sidebar-ring: #8c87ff;
 
   --ink-2: #d1d1d6;
   --muted-2: #98989f;
@@ -267,9 +267,9 @@
   --line: #38383a;
   --line-2: #2c2c2e;
   --hairline: rgba(84, 84, 88, 0.65);
-  --accent-50: #16302b;
-  --accent-100: #1d4038;
-  --accent-700: #6fd8bf;
+  --accent-50: #242345;
+  --accent-100: #343269;
+  --accent-700: #c1beff;
   --coral: #ff453a;
   --ok: #30d158;
   --ok-bg: #10301a;

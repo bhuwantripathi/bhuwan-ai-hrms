@@ -89,7 +89,7 @@ function Brand({ org }: { org?: string }) {
       className="press flex items-center gap-2.5 text-[17px] font-semibold tracking-[-0.018em] text-foreground"
     >
       <span className="grid size-9 place-items-center rounded-[10px] bg-primary text-[18px] font-bold text-primary-foreground shadow-[var(--elev-2)]">
-        e
+        B
       </span>
       <span className="hidden max-w-[220px] truncate sm:inline">{org || productName()}</span>
     </Link>

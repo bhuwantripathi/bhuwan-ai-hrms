@@ -17,7 +17,7 @@ export interface ConsoleEnv {
 
 export const DEFAULT_ENV: ConsoleEnv = {
   API_URL: "http://localhost:5005/api",
-  PRODUCT_NAME: "Euron Open HRMS",
+  PRODUCT_NAME: "Bhuwan AI HRMS",
   TENANT_URL: "http://localhost:3410",
 };
 

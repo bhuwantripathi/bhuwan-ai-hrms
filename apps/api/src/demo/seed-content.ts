@@ -167,8 +167,8 @@ async function ensureContent(sys = systemRepos(), opts: { vendorPasswordHash?: s
         }
         return v;
       };
-      const v1 = await mk("Nimbus Cloud Hosting", "VENDOR", `billing@cloudhost.${org.slug}.example.com`, "Cloud hosting & infra", true);
-      await mk("Acme Design Consultants", "CONSULTANT", `hello@design.${org.slug}.example.com`, "Brand & UX consulting", false);
+      const v1 = await mk("Nimbus Cloud Hosting", "VENDOR", `billing@cloudhost.${org.slug}.systems.com`, "Cloud hosting & infra", true);
+      await mk("BrightPixel Design Studio", "CONSULTANT", `hello@design.${org.slug}.systems.com`, "Brand & UX consulting", false);
       // sample bills for v1
       await r.vendorBills.insert({ vendorId: v1.id, invoiceNumber: "INV-2026-001", amount: 80000, taxAmount: 14400, totalAmount: 94400, currency: "INR", description: "Cloud hosting - April", periodFrom: "2026-04-01", periodTo: "2026-04-30", attachmentFilename: null, status: "APPROVED", decidedBy: null, decidedAt: new Date().toISOString(), note: "" });
       await r.vendorBills.insert({ vendorId: v1.id, invoiceNumber: "INV-2026-002", amount: 85000, taxAmount: 15300, totalAmount: 100300, currency: "INR", description: "Cloud hosting - May", periodFrom: "2026-05-01", periodTo: "2026-05-31", attachmentFilename: null, status: "SUBMITTED", decidedBy: null, decidedAt: null, note: "" });
@@ -201,7 +201,7 @@ async function seedPeopleData(r, org) {
     const e = emps[idx];
     for (let d = 1; d <= 6; d++) {
       const type = WTYPES[(idx + d) % WTYPES.length];
-      await r.workLogs.insert({ employeeId: e.id, date: daysAgo(d), type, client: type === "CLIENT" ? "Acme Corp" : "", hours: 7 + ((idx + d) % 3), productivityScore: 6 + ((idx + d) % 4), summary: "Shipped tasks, reviews and planning.", tasks: "" });
+      await r.workLogs.insert({ employeeId: e.id, date: daysAgo(d), type, client: type === "CLIENT" ? "Bhuwan AI Client" : "", hours: 7 + ((idx + d) % 3), productivityScore: 6 + ((idx + d) % 4), summary: "Shipped tasks, reviews and planning.", tasks: "" });
       await r.wellbeing.insert({ employeeId: e.id, date: daysAgo(d), mood: 3 + ((idx + d) % 3), stress: 2 + ((idx + d) % 3), workload: 3 + ((idx + d) % 2), note: "", anonymous: true });
     }
     await r.aiTokens.insert({ employeeId: e.id, plan: idx === 0 ? "PRO" : "PLUS", dailyLimit: idx === 0 ? 500000 : 100000, usedToday: 12000 + idx * 4000, requests: [], grantedBy: null });
@@ -215,7 +215,7 @@ async function seedPeopleData(r, org) {
   const ft = emps.find((e) => e.employmentType === "FULL_TIME");
   if (ft) await r.familyBenefits.insert({ employeeId: ft.id, plan: "Group Health - Family Floater", coverAmount: 500000, dependents: [{ name: "Spouse", relation: "Spouse", dob: "1992-03-10", gender: "Female" }, { name: "Child", relation: "Son", dob: "2020-08-01", gender: "Male" }], status: "ENROLLED" });
   if ((await r.appraisalCycles.count()) === 0) {
-    const cycle = await r.appraisalCycles.insert({ name: "H1 2026 Appraisal", periodLabel: "Jan-Jun 2026", status: "OPEN" });
+    const cycle = await r.appraisalCycles.insert({ name: "H2 2026 Appraisal", periodLabel: "Jul-Dec 2026", status: "OPEN" });
     for (const e of emps) await r.appraisals.insert({ cycleId: cycle.id, employeeId: e.id, selfReview: "", achievements: "", managerRating: null, managerComments: "", recommendedHikePct: 0, finalHikePct: 0, status: "PENDING_SELF" });
   }
 }

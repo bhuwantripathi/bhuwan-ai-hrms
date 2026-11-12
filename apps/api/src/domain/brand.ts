@@ -16,7 +16,7 @@ const GENERIC = {
   website: "",
   hrEmail: "",
   phone: "",
-  color: "#0f6e5e",
+  color: "#5b55d7",
   logo: null,
   signatory: { name: "Authorised Signatory", title: "" },
 };

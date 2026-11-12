@@ -1,3 +1,30 @@
+# Bhuwan AI HRMS
+
+A custom-branded, multi-tenant HRMS fork for Bhuwan AI Systems. Based on the Euron Open HRMS project; original upstream documentation and attribution are preserved below.
+
+## Demo environments
+
+- **Bhuwan AI Systems** — India (Bengaluru), 12 demo employees, five departments. HR admin: `vinod.tripathi@bhuwan-ai.systems.com`.
+- **Northstar Analytics** — United States (San Francisco), five demo employees. HR admin: `olivia.reed@northstar-analytics.systems.com`.
+- Operator console: `operator@bhuwan-ai.systems.com`.
+
+The demo script generates or uses `HRMS_DEMO_PASSWORD` and prints credentials. The `systems.com` email addresses are **fictional test identities**, not provisioned mailboxes. All employee, appraisal, reporting, asset and work-log demo records originate from the same employee database rows.
+
+## Local launch
+
+```bash
+make up
+make demo
+```
+
+Tenant web: http://localhost:3410 · Operator console: http://localhost:3420 · Mail testing: http://localhost:8025
+
+**Existing local databases:** `make demo` deliberately does not overwrite an existing populated database. Re-seeding with `demo:seed --reset` is **destructive and clears ALL database tables**; never run on real employee data or without a backup. For a clean demo, start this fork against a fresh local Compose database.
+
+The People, Time, Performance, Finance, Workplace, Company and Settings navigation, leave-rule functionality, and employment-type/PF/ESI/tax/gratuity reference table are unchanged. Only the leave-rule explanatory paragraph is rephrased. Theme uses indigo and lavender with existing light/dark mode.
+
+---
+
 <p align="center">
   <img src="docs/assets/banner.svg" alt="Euron Open HRMS: multi-tenant HR, global payroll and onboarding, on infrastructure you own" width="100%">
 </p>

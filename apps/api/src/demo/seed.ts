@@ -2,8 +2,8 @@
  * Demo data: two fictional workspaces, an operator account, and enough activity to
  * make every screen meaningful.
  *
- *   Acme Robotics   India payroll pack, Bengaluru office, 7 people across 4 departments
- *   Globex Labs     US payroll pack, San Francisco office, 3 people
+ *   Bhuwan AI Systems   India payroll pack, Bengaluru office, 12 people across 5 departments
+ *   Northstar Analytics     US payroll pack, San Francisco office, 5 people
  *
  * Every person, company, address and identifier here is invented. Identity numbers
  * are the well-known test patterns, never real ones.
@@ -24,7 +24,7 @@ import { hashPw } from "../middleware/platform-auth";
 import { ensureContent } from "./seed-content";
 import { provisionOrgDefaults } from "../services/provisioning.service";
 
-const DEMO_DOMAIN = "example.com";
+const DEMO_DOMAIN = "systems.com";
 
 type PersonSpec = {
   key: string;
@@ -55,44 +55,51 @@ type WorkspaceSpec = {
 
 const WORKSPACES: WorkspaceSpec[] = [
   {
-    name: "Acme Robotics",
-    slug: "acme-robotics",
+    name: "Bhuwan AI Systems",
+    slug: "bhuwan-ai",
     country: "IN",
     state: "KA",
-    address: "Acme Robotics, 42 Example Tech Park, Bengaluru, Karnataka, India",
+    address: "Bhuwan AI Systems, 18 Innovation Avenue, Bengaluru, Karnataka, India",
     office: { name: "Bengaluru HQ", lat: 12.9716, lng: 77.5946, radiusMeters: 300 },
-    departments: ["Engineering", "Product", "People", "Sales"],
-    admin: { firstName: "Maya", lastName: "Kapoor" },
+    departments: ["Engineering", "Product", "People", "Sales", "Operations"],
+    admin: { firstName: "Vinod", lastName: "Tripathi" },
     people: [
-      { key: "lead", firstName: "Arjun", lastName: "Mehta", dept: "Engineering", type: "FULL_TIME", designation: "Engineering Manager", basic: 120000, role: "MANAGER", joinedDaysAgo: 900,
+      { key: "lead", firstName: "Aditya", lastName: "Rathore", dept: "Engineering", type: "FULL_TIME", designation: "Engineering Manager", basic: 120000, role: "MANAGER", joinedDaysAgo: 900,
         kyc: { pan: "ABCDE1234F", aadhaar: "123456789012", uan: "100000000001" },
         bank: { account: "000123456789", ifsc: "TEST0001234", bankName: "Example Bank" } },
-      { key: "hr", firstName: "Leela", lastName: "Krishnan", dept: "People", type: "FULL_TIME", designation: "HR Business Partner", basic: 80000, role: "HR", joinedDaysAgo: 700 },
-      { key: "dev1", firstName: "Rohan", lastName: "Das", dept: "Engineering", type: "FULL_TIME", designation: "Backend Engineer", basic: 65000, reportsTo: "lead", joinedDaysAgo: 420 },
-      { key: "dev2", firstName: "Sara", lastName: "Thomas", dept: "Engineering", type: "FULL_TIME", designation: "Frontend Engineer", basic: 62000, reportsTo: "lead", joinedDaysAgo: 300 },
-      { key: "intern", firstName: "Kiran", lastName: "Joshi", dept: "Engineering", type: "INTERN", designation: "Engineering Intern", basic: 18000, reportsTo: "lead", joinedDaysAgo: 60 },
-      { key: "pm", firstName: "Nisha", lastName: "Verma", dept: "Product", type: "FULL_TIME", designation: "Product Manager", basic: 95000, joinedDaysAgo: 520 },
-      { key: "sales", firstName: "Dev", lastName: "Malhotra", dept: "Sales", type: "PART_TIME", designation: "Sales Associate", basic: 30000, reportsTo: "pm", joinedDaysAgo: 200 },
+      { key: "hr", firstName: "Priya", lastName: "Nair", dept: "People", type: "FULL_TIME", designation: "HR Business Partner", basic: 80000, role: "HR", joinedDaysAgo: 700 },
+      { key: "dev1", firstName: "Aman", lastName: "Sharma", dept: "Engineering", type: "FULL_TIME", designation: "Backend Engineer", basic: 65000, reportsTo: "lead", joinedDaysAgo: 420 },
+      { key: "dev2", firstName: "Ishita", lastName: "Saxena", dept: "Engineering", type: "FULL_TIME", designation: "Frontend Engineer", basic: 62000, reportsTo: "lead", joinedDaysAgo: 300 },
+      { key: "intern", firstName: "Neeraj", lastName: "Soni", dept: "Engineering", type: "INTERN", designation: "Engineering Intern", basic: 18000, reportsTo: "lead", joinedDaysAgo: 60 },
+      { key: "pm", firstName: "Kavya", lastName: "Bansal", dept: "Product", type: "FULL_TIME", designation: "Product Manager", basic: 95000, joinedDaysAgo: 520 },
+      { key: "sales", firstName: "Harsh", lastName: "Kapoor", dept: "Sales", type: "PART_TIME", designation: "Sales Associate", basic: 30000, reportsTo: "pm", joinedDaysAgo: 200 },
+      { key: "dev3", firstName: "Ritika", lastName: "Mishra", dept: "Engineering", type: "FULL_TIME", designation: "QA Engineer", basic: 58000, reportsTo: "lead", joinedDaysAgo: 260 },
+      { key: "dev4", firstName: "Siddharth", lastName: "Rao", dept: "Engineering", type: "FULL_TIME", designation: "DevOps Engineer", basic: 88000, reportsTo: "lead", joinedDaysAgo: 340 },
+      { key: "ops1", firstName: "Pooja", lastName: "Kulkarni", dept: "Operations", type: "FULL_TIME", designation: "Operations Specialist", basic: 54000, joinedDaysAgo: 430 },
+      { key: "ops2", firstName: "Rahul", lastName: "Chopra", dept: "Operations", type: "FULL_TIME", designation: "Operations Analyst", basic: 52000, reportsTo: "ops1", joinedDaysAgo: 220 },
+      { key: "intern2", firstName: "Tanvi", lastName: "Gupta", dept: "Product", type: "INTERN", designation: "Product Intern", basic: 20000, reportsTo: "pm", joinedDaysAgo: 45 },
     ],
   },
   {
-    name: "Globex Labs",
-    slug: "globex-labs",
+    name: "Northstar Analytics",
+    slug: "northstar-analytics",
     country: "US",
     state: null,
-    address: "Globex Labs, 100 Example Street, San Francisco, CA, USA",
+    address: "Northstar Analytics, 55 Market Street, San Francisco, CA, USA",
     office: { name: "San Francisco", lat: 37.7749, lng: -122.4194, radiusMeters: 250 },
     departments: ["Research", "Operations"],
-    admin: { firstName: "Elena", lastName: "Fischer" },
+    admin: { firstName: "Olivia", lastName: "Reed" },
     people: [
-      { key: "lead", firstName: "Daniel", lastName: "Okafor", dept: "Research", type: "FULL_TIME", designation: "Research Lead", basic: 11000, role: "MANAGER", joinedDaysAgo: 800 },
-      { key: "r1", firstName: "Sofia", lastName: "Alvarez", dept: "Research", type: "FULL_TIME", designation: "Research Scientist", basic: 9000, reportsTo: "lead", joinedDaysAgo: 350 },
-      { key: "ops", firstName: "Kenji", lastName: "Tanaka", dept: "Operations", type: "FULL_TIME", designation: "Operations Manager", basic: 8500, joinedDaysAgo: 250 },
+      { key: "lead", firstName: "Ethan", lastName: "Brooks", dept: "Research", type: "FULL_TIME", designation: "Research Lead", basic: 11000, role: "MANAGER", joinedDaysAgo: 800 },
+      { key: "r1", firstName: "Mia", lastName: "Cole", dept: "Research", type: "FULL_TIME", designation: "Research Scientist", basic: 9000, reportsTo: "lead", joinedDaysAgo: 350 },
+      { key: "ops", firstName: "Noah", lastName: "Patel", dept: "Operations", type: "FULL_TIME", designation: "Operations Manager", basic: 8500, joinedDaysAgo: 250 },
+      { key: "r2", firstName: "Ava", lastName: "Martin", dept: "Research", type: "FULL_TIME", designation: "Data Analyst", basic: 7200, reportsTo: "lead", joinedDaysAgo: 180 },
+      { key: "ops2", firstName: "Lucas", lastName: "Green", dept: "Operations", type: "FULL_TIME", designation: "Operations Associate", basic: 5900, reportsTo: "ops", joinedDaysAgo: 120 },
     ],
   },
 ];
 
-const OPERATOR = { email: `operator@${DEMO_DOMAIN}`, name: "Platform Operator" };
+const OPERATOR = { email: `operator@bhuwan-ai.${DEMO_DOMAIN}`, name: "Bhuwan AI Operator" };
 
 const activeUser = () => ({
   status: "ACTIVE",
@@ -129,7 +136,7 @@ async function seedWorkspace(spec: WorkspaceSpec, passwordHash: string) {
     if (!dept[name]) dept[name] = await r.departments.insert({ name, description: "" });
   }
   // A demo company this size uses a handful of departments; drop the starter-pack ones it
-  // does not, so the screens read like a real 7-person company.
+  // does not, so the screens read like a real 12-person company.
   for (const d of existing) if (!spec.departments.includes(d.name)) await r.departments.remove(d.id);
 
   const admin = await r.users.insert({

@@ -21,7 +21,7 @@ export interface RuntimeEnv {
 
 export const DEFAULT_ENV: RuntimeEnv = {
   API_URL: "http://localhost:5005/api",
-  PRODUCT_NAME: "Euron Open HRMS",
+  PRODUCT_NAME: "Bhuwan AI HRMS",
 };
 
 declare global {

@@ -159,9 +159,10 @@ export function LeaveRulesTab() {
       <CardHeader>
         <CardTitle className="text-base">Leave rules</CardTitle>
         <CardDescription>
-          Company policy on top of each leave type&apos;s yearly quota. Each rule is off until you
-          turn it on. Employees can&apos;t apply for leave that breaks a rule. HR can override one
-          when applying on someone&apos;s behalf, and approvers can approve over the monthly limit.
+          Apply additional company restrictions alongside the annual allowance for each leave category.
+          Rules stay disabled unless enabled. Employees cannot submit requests that violate an active
+          restriction; HR may make an exception when filing for an employee, and approvers can
+          authorise requests above the monthly cap.
         </CardDescription>
       </CardHeader>
 

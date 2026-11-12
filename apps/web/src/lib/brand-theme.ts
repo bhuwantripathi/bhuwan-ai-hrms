@@ -16,7 +16,7 @@ export interface ThemePreset {
 }
 
 /** The stylesheet's default --primary. Choosing it clears the override. */
-export const DEFAULT_BRAND_COLOR = "#0f6e5e";
+export const DEFAULT_BRAND_COLOR = "#5b55d7";
 
 /** Curated, accessible presets, shown as swatches in the settings UI. */
 export const THEME_PRESETS: ThemePreset[] = [

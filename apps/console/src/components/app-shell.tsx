@@ -78,7 +78,7 @@ export function AppShell({ children }: { children: ReactNode }) {
 
           <Link href="/overview" className="press flex items-center gap-3">
             <span className="grid size-9 place-items-center rounded-[10px] bg-primary text-[18px] font-bold text-primary-foreground">
-              e
+              B
             </span>
             <span className="text-[17px] font-semibold tracking-[-0.018em]">
               {productName()}{" "}

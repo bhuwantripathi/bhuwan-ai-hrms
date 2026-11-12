@@ -1,4 +1,4 @@
-# Euron Open HRMS: developer entry points. `make` lists every target.
+# Bhuwan AI HRMS: developer entry points. `make` lists every target.
 SHELL := /usr/bin/env bash
 .DEFAULT_GOAL := help
 

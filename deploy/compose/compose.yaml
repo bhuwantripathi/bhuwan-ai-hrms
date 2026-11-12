@@ -1,5 +1,5 @@
 # ─────────────────────────────────────────────────────────────────────────────
-# Euron Open HRMS: local stack (cloud-agnostic base).
+# Bhuwan AI HRMS: local stack (cloud-agnostic base).
 #
 # Never run this file alone. Pair it with a cloud overlay:
 #   make up        # = compose.yaml + compose.floci.yaml  (emulated AWS, no account needed)
@@ -22,7 +22,7 @@ x-api-env: &api-env
   LOG_LEVEL: ${HRMS_LOG_LEVEL:-info}
   DATABASE_URL: postgres://hrms:hrms@postgres:5432/hrms
   MIGRATE_ON_BOOT: "true"
-  PRODUCT_NAME: ${HRMS_PRODUCT_NAME:-Euron Open HRMS}
+  PRODUCT_NAME: ${HRMS_PRODUCT_NAME:-Bhuwan AI HRMS}
   JWT_SECRET: ${HRMS_JWT_SECRET:?run `make env` first}
   PLATFORM_JWT_SECRET: ${HRMS_PLATFORM_JWT_SECRET:?run `make env` first}
   DOC_VERIFY_SECRET: ${HRMS_DOC_VERIFY_SECRET:?run `make env` first}
@@ -81,7 +81,7 @@ services:
     environment:
       # The browser calls the API directly, so this is the host-facing address.
       API_URL: http://localhost:${HRMS_API_PORT:-5005}/api
-      PRODUCT_NAME: ${HRMS_PRODUCT_NAME:-Euron Open HRMS}
+      PRODUCT_NAME: ${HRMS_PRODUCT_NAME:-Bhuwan AI HRMS}
     ports:
       - "127.0.0.1:${HRMS_WEB_PORT:-3410}:8080"
     restart: unless-stopped
@@ -94,7 +94,7 @@ services:
     environment:
       API_URL: http://localhost:${HRMS_API_PORT:-5005}/api
       TENANT_URL: http://localhost:${HRMS_WEB_PORT:-3410}
-      PRODUCT_NAME: ${HRMS_PRODUCT_NAME:-Euron Open HRMS}
+      PRODUCT_NAME: ${HRMS_PRODUCT_NAME:-Bhuwan AI HRMS}
     ports:
       - "127.0.0.1:${HRMS_CONSOLE_PORT:-3420}:8080"
     restart: unless-stopped
