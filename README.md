@@ -19,7 +19,7 @@ make demo
 
 Tenant web: http://localhost:3410 · Operator console: http://localhost:3420 · Mail testing: http://localhost:8025
 
-**Existing local databases:** `make demo` deliberately does not overwrite an existing populated database. Re-seeding with `demo:seed --reset` is **destructive and clears ALL database tables**; never run on real employee data or without a backup. For a clean demo, start this fork against a fresh local Compose database.
+**Existing local databases:** `make demo` deliberately does not overwrite an existing populated database. Re-seeding with `demo:seed --reset` is **destructive and clears ALL database tables**; never run on real employee data or without a backup. For a clean demo, start this fork against its own new Compose database (`bhuwan-ai-hrms` project namespace). Stop the original containers without deleting original volumes using `docker compose -p open-hrms stop` before launching this fork on the same ports. Do NOT use `make down` on the original stack: that command deletes its volumes.
 
 The People, Time, Performance, Finance, Workplace, Company and Settings navigation, leave-rule functionality, and employment-type/PF/ESI/tax/gratuity reference table are unchanged. Only the leave-rule explanatory paragraph is rephrased. Theme uses indigo and lavender with existing light/dark mode.
 

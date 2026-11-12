@@ -1,4 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Bhuwan AI HRMS">
-  <rect width="512" height="512" rx="113" fill="#5b55d7"/>
-  <path fill="#ffffff" d="M153.6 133.1h215v43.5h-215zM153.6 234.2h174.1v43.6H153.6zM153.6 335.4h215v43.5h-215zM153.6 133.1h51.2v245.8h-51.2z"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Bhuwan AI HRMS"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#5b55d7"/><stop offset="1" stop-color="#3d71ce"/></linearGradient></defs><rect width="512" height="512" rx="115" fill="url(#g)"/><path d="M152 110h124c80 0 119 40 119 96 0 39-21 67-53 80 43 12 65 41 65 82 0 67-51 111-135 111H152V110zm76 66v80h45c30 0 44-15 44-41 0-25-15-39-45-39h-44zm0 146v90h51c34 0 51-15 51-45 0-31-20-45-53-45h-49z" fill="#fff" transform="translate(0 -34)"/></svg>

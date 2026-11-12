@@ -11,7 +11,7 @@
 # Host ports (override in .env if they clash with something you already run):
 #   web 3410   console 3420   api 5005   postgres 5442   mailpit 8025   floci 4576
 # ─────────────────────────────────────────────────────────────────────────────
-name: open-hrms
+name: bhuwan-ai-hrms
 
 x-api-env: &api-env
   # Development mode keeps the production guards as warnings: the local stack talks to
