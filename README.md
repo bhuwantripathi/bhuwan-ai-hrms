@@ -1,36 +1,19 @@
 # Bhuwan AI HRMS
 
-A custom-branded, multi-tenant HRMS fork for Bhuwan AI Systems. Based on the Euron Open HRMS project; original upstream documentation and attribution are preserved below.
+**Bhuwan AI Systems** · Multi-tenant Human Resource Management Platform
 
-## Demo environments
+Manage employees, attendance, leave, payroll, onboarding, performance, documents and company operations in one place. Branded for Bhuwan AI Systems, with separate workspaces and the existing operator console.
 
-- **Bhuwan AI Systems** — India (Bengaluru), 12 demo employees, five departments. HR admin: `vinod.tripathi@bhuwan-ai.systems.com`.
-- **Northstar Analytics** — United States (San Francisco), five demo employees. HR admin: `olivia.reed@northstar-analytics.systems.com`.
-- Operator console: `operator@bhuwan-ai.systems.com`.
-
-The demo script generates or uses `HRMS_DEMO_PASSWORD` and prints credentials. The `systems.com` email addresses are **fictional test identities**, not provisioned mailboxes. All employee, appraisal, reporting, asset and work-log demo records originate from the same employee database rows.
-
-## Local launch
-
-```bash
-make up
-make demo
-```
-
-Tenant web: http://localhost:3410 · Operator console: http://localhost:3420 · Mail testing: http://localhost:8025
-
-**Existing local databases:** `make demo` deliberately does not overwrite an existing populated database. Re-seeding with `demo:seed --reset` is **destructive and clears ALL database tables**; never run on real employee data or without a backup. For a clean demo, start this fork against its own new Compose database (`bhuwan-ai-hrms` project namespace). Stop the original containers without deleting original volumes using `docker compose -p open-hrms stop` before launching this fork on the same ports. Do NOT use `make down` on the original stack: that command deletes its volumes.
-
-The People, Time, Performance, Finance, Workplace, Company and Settings navigation, leave-rule functionality, and employment-type/PF/ESI/tax/gratuity reference table are unchanged. Only the leave-rule explanatory paragraph is rephrased. Theme uses indigo and lavender with existing light/dark mode.
-
----
+> **Demo environments**: Bhuwan AI Systems (12 employees) and Southwing Analytics (5 employees). Primary admin: `vinod.tripathi@bhuwan-ai.systems.com`; Southwing admin: `riya.pant@bhuwan-ai-analytics.systems.com`; operator: `operator@bhuwan-ai.systems.com`. These addresses are fictional demo identities, not verified inboxes. The Southwing changes are first being tested locally; push the local changes to bring the remote seed code into sync.
+>
+> **Local start:** `make up` then `make demo` for an empty database. Existing demo workspaces are preserved; **do not use `--reset`** unless you explicitly want to wipe the demo database.
 
 <p align="center">
-  <img src="docs/assets/banner.svg" alt="Euron Open HRMS: multi-tenant HR, global payroll and onboarding, on infrastructure you own" width="100%">
+  <img src="docs/assets/banner.svg" alt="Bhuwan AI HRMS: multi-tenant HR, global payroll and onboarding, on infrastructure you own" width="100%">
 </p>
 
 <p align="center">
-  <img alt="Open source" src="https://img.shields.io/badge/open_source-%E2%9D%A4-2dd4bf?style=flat">
+  <img alt="Open source" src="https://img.shields.io/badge/open_source-%E2%9D%A4-5b55d7?style=flat">
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-3b82f6?style=flat"></a>
   <img alt="Node.js 22 LTS" src="https://img.shields.io/badge/node-22_LTS-339933?style=flat&logo=nodedotjs&logoColor=white">
   <img alt="TypeScript strict" src="https://img.shields.io/badge/TypeScript-strict-3178c6?style=flat&logo=typescript&logoColor=white">
@@ -41,16 +24,14 @@ The People, Time, Performance, Finance, Workplace, Company and Settings navigati
 </p>
 
 <p align="center">
-  <a href="https://github.com/euron-sde-team/euron-open-hrms/stargazers"><img alt="Star this repo" src="https://img.shields.io/github/stars/euron-sde-team/euron-open-hrms?style=social&label=Star%20this%20repo"></a>
-  <a href="https://github.com/euron-sde-team/euron-open-hrms/fork"><img alt="Fork" src="https://img.shields.io/github/forks/euron-sde-team/euron-open-hrms?style=social&label=Fork"></a>
-  <a href="https://github.com/euron-sde-team/euron-open-hrms/watchers"><img alt="Watch" src="https://img.shields.io/github/watchers/euron-sde-team/euron-open-hrms?style=social&label=Watch"></a>
+  <a href="https://github.com/bhuwantripathi/bhuwan-ai-hrms/fork"><img alt="Fork" src="https://img.shields.io/github/forks/bhuwantripathi/bhuwan-ai-hrms?style=social&label=Fork"></a>
+  <a href="https://github.com/bhuwantripathi/bhuwan-ai-hrms/watchers"><img alt="Watch" src="https://img.shields.io/github/watchers/bhuwantripathi/bhuwan-ai-hrms?style=social&label=Watch"></a>
   <br>
-  <a href="https://github.com/euron-sde-team/euron-open-hrms/issues"><img alt="Open issues" src="https://img.shields.io/github/issues/euron-sde-team/euron-open-hrms?style=flat&color=2dd4bf"></a>
-  <a href="https://github.com/euron-sde-team/euron-open-hrms/pulls"><img alt="PRs welcome" src="https://img.shields.io/badge/PRs-welcome-34d399?style=flat"></a>
-  <a href="https://github.com/euron-sde-team/euron-open-hrms/commits/main"><img alt="Last commit" src="https://img.shields.io/github/last-commit/euron-sde-team/euron-open-hrms?style=flat&color=8b95a8"></a>
+  <a href="https://github.com/bhuwantripathi/bhuwan-ai-hrms/issues"><img alt="Open issues" src="https://img.shields.io/github/issues/bhuwantripathi/bhuwan-ai-hrms?style=flat&color=5b55d7"></a>
+  <a href="https://github.com/bhuwantripathi/bhuwan-ai-hrms/pulls"><img alt="PRs welcome" src="https://img.shields.io/badge/PRs-welcome-34d399?style=flat"></a>
+  <a href="https://github.com/bhuwantripathi/bhuwan-ai-hrms/commits/main"><img alt="Last commit" src="https://img.shields.io/github/last-commit/bhuwantripathi/bhuwan-ai-hrms?style=flat&color=8b95a8"></a>
   <img alt="Runs locally with no AWS account" src="https://img.shields.io/badge/runs_locally-no_AWS_account_needed-0a1110?style=flat">
   <br>
-  <a href="#built-by-the-team-behind-euron"><img alt="Built by the team behind Euron" src="https://img.shields.io/badge/built_by-Euron-4f46e5?style=flat"></a>
 </p>
 
 <p align="center">
@@ -63,8 +44,7 @@ The People, Time, Performance, Finance, Workplace, Company and Settings navigati
   <b><a href="#-documentation">Docs</a></b>
 </p>
 
-**Euron Open HRMS** is an open-source, MIT-licensed human resources platform, part of the
-open-source initiative of **ENGAGESPHERE TECHNOLOGY PRIVATE LIMITED**. One deployment serves
+**Bhuwan AI HRMS** is a customized, MIT-licensed human resources platform for **Bhuwan AI Systems**. One deployment serves
 many companies ("workspaces"). Each gets employee records, attendance, leave, payroll for its
 country, self-onboarding, documents and letters, exits, performance and an employee
 self-service portal. Platform operators run the fleet from a separate console.
@@ -88,29 +68,9 @@ command from the same Terraform.
 > Manager, Route53 and SES emulated locally and provisioned by the same Terraform modules
 > that build production. `make up && make demo` reproduces it.
 
-<h3 align="center">Built by the team behind Euron</h3>
-
-<p align="center">Euron Open HRMS comes from the people who build these platforms. If you like how this repository is built, come and see what we build with it.</p>
-
-<p align="center">
-  <a href="https://euron.one"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/brand/euron-dark.svg"><img src="docs/assets/brand/euron-light.svg" alt="Euron: learn the latest technologies from industry experts. Visit euron.one" width="31%"></picture></a>
-  <a href="https://euronsystems.com"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/brand/euron-systems-dark.svg"><img src="docs/assets/brand/euron-systems-light.svg" alt="Euron Systems: the SaaS platform for educators and creators. Visit euronsystems.com" width="31%"></picture></a>
-  <a href="https://alphaeuron.com"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/brand/alpha-euron-dark.svg"><img src="docs/assets/brand/alpha-euron-light.svg" alt="Alpha Euron: where school kids grow creativity and tech skills with AI. Visit alphaeuron.com" width="31%"></picture></a>
-</p>
-
-<p align="center">
-  <a href="https://www.instagram.com/euron_official"><img src="https://img.shields.io/badge/Instagram-E4405F?style=flat-square&logo=instagram&logoColor=white" alt="Instagram"></a>
-  <a href="https://www.linkedin.com/company/euronone/posts/"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn"></a>
-  <a href="https://x.com/euron712"><img src="https://img.shields.io/badge/X-000000?style=flat-square&logo=x&logoColor=white" alt="X"></a>
-  <a href="https://www.youtube.com/@Euron-official"><img src="https://img.shields.io/badge/YouTube-FF0000?style=flat-square&logo=youtube&logoColor=white" alt="YouTube"></a>
-  <a href="https://whatsapp.com/channel/0029VaeeJwq9RZAfPW9P2l07"><img src="https://img.shields.io/badge/WhatsApp_channel-25D366?style=flat-square&logo=whatsapp&logoColor=white" alt="WhatsApp channel"></a>
-</p>
-
----
-
 ## 📚 Table of contents
 
-- [Why Euron Open HRMS](#-why-euron-open-hrms)
+- [Why Bhuwan AI HRMS](#-why-euron-open-hrms)
 - [At a glance](#-at-a-glance)
 - [Screenshots](#️-screenshots)
 - [Features](#-features)
@@ -134,11 +94,11 @@ command from the same Terraform.
 
 ---
 
-## 💡 Why Euron Open HRMS
+## 💡 Why Bhuwan AI HRMS
 
 HR software is where a company keeps salaries, national ID numbers, bank accounts, medical
 leave and exit records. Hosted HR suites ask you to trust a black box with all of it.
-Spreadsheets give that data to whoever opens the file. Euron Open HRMS is the third
+Spreadsheets give that data to whoever opens the file. Bhuwan AI HRMS is the third
 option: a complete, modern HRMS you run yourself, with the security engineering visible
 in the code.
 
@@ -164,6 +124,9 @@ in the code.
 | **License** | MIT |
 
 ## 🖼️ Screenshots
+
+*Technical feature screenshots supplied by the upstream project; workspace names in these illustrations may differ from the Bhuwan AI Systems demo. Updated screenshots can be captured after local UI verification.*
+
 
 <table>
   <tr>
@@ -324,8 +287,8 @@ Free local ports (each overridable in `deploy/compose/.env`): 3410 (web), 3420 (
 ## 🚀 Quickstart
 
 ```bash
-git clone https://github.com/euron-sde-team/euron-open-hrms.git
-cd euron-open-hrms
+git clone https://github.com/bhuwantripathi/bhuwan-ai-hrms.git
+cd bhuwan-ai-hrms
 
 make up      # build and start everything; Terraform provisions the AWS emulator first
 make demo    # two demo workspaces and an operator account; prints the logins
@@ -333,8 +296,8 @@ make demo    # two demo workspaces and an operator account; prints the logins
 
 | Open | As |
 | --- | --- |
-| http://localhost:3410 | `maya.kapoor@acme-robotics.example.com` (HR admin of Acme Robotics), or `rohan.das@acme-robotics.example.com` (an employee) |
-| http://localhost:3420 | `operator@example.com` (operator console) |
+| http://localhost:3410 | `vinod.tripathi@bhuwan-ai.systems.com` (HR admin of Bhuwan AI Systems), or `aman.sharma@bhuwan-ai.systems.com` (an employee) |
+| http://localhost:3420 | `operator@bhuwan-ai.systems.com` (operator console) |
 | http://localhost:8025 | Every email the stack sends, delivered through the emulated SES |
 
 The password for every demo account is printed by `make demo` (it is generated by `make env`
@@ -347,7 +310,7 @@ and stored in `deploy/compose/.env`). `make down` stops everything and deletes t
 ## 🧭 Explore the repository
 
 ```text
-euron-open-hrms/
+bhuwan-ai-hrms/
 ├── apps/
 │   ├── api/                 Express API: tenant plane, operator plane, job worker
 │   │   └── src/
@@ -401,7 +364,7 @@ its plane, path parameters and the permission it requires.
 ```bash
 # sign in, then call the API with the session token
 TOKEN=$(curl -s localhost:5005/api/auth/login -H 'content-type: application/json' \
-  -d '{"email":"maya.kapoor@acme-robotics.example.com","password":"<demo password>"}' | jq -r .token)
+  -d '{"email":"vinod.tripathi@bhuwan-ai.systems.com","password":"<demo password>"}' | jq -r .token)
 curl -s localhost:5005/api/employees -H "authorization: Bearer $TOKEN" | jq '.[0]'
 ```
 
@@ -501,7 +464,7 @@ Report vulnerabilities privately: see [SECURITY.md](SECURITY.md).
 - More country packs, contributed through the [country pack guide](docs/architecture/payroll-engine.md)
 - Typed route handlers (the API is strict except for implicit `any` on Express handlers)
 
-Have an idea? [Open a feature request](https://github.com/euron-sde-team/euron-open-hrms/issues/new/choose).
+Have an idea? [Open a feature request](https://github.com/bhuwantripathi/bhuwan-ai-hrms/issues/new/choose).
 
 ## ❓ FAQ
 
@@ -550,6 +513,9 @@ Add a pack under `apps/api/src/domain/payroll/countries/`. The
 
 ## 🤝 Contributing, security and license
 
+**Upstream acknowledgement:** This repository is a customized fork of [Euron Open HRMS](https://github.com/euron-sde-team/euron-open-hrms). Original copyright and the MIT License are retained in [LICENSE](LICENSE).
+
+
 Contributions are welcome: read [CONTRIBUTING.md](CONTRIBUTING.md) and the
 [code of conduct](CODE_OF_CONDUCT.md). Report security issues privately as described in
 [SECURITY.md](SECURITY.md).
@@ -557,6 +523,4 @@ Contributions are welcome: read [CONTRIBUTING.md](CONTRIBUTING.md) and the
 Released under the [MIT License](LICENSE). Copyright (c) 2026 ENGAGESPHERE TECHNOLOGY
 PRIVATE LIMITED and the Euron Open HRMS contributors.
 
-<p align="center">
-  If Euron Open HRMS saves you time, <b><a href="https://github.com/euron-sde-team/euron-open-hrms/stargazers">⭐ star the repository</a></b>.
-</p>
+
