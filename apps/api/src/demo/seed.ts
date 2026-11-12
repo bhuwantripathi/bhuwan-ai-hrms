@@ -3,7 +3,7 @@
  * make every screen meaningful.
  *
  *   Bhuwan AI Systems   India payroll pack, Bengaluru office, 12 people across 5 departments
- *   Northstar Analytics     US payroll pack, San Francisco office, 5 people
+ *   Southwing Analytics     US payroll pack, San Francisco office, 5 people
  *
  * Every person, company, address and identifier here is invented. Identity numbers
  * are the well-known test patterns, never real ones.
@@ -81,20 +81,20 @@ const WORKSPACES: WorkspaceSpec[] = [
     ],
   },
   {
-    name: "Northstar Analytics",
-    slug: "northstar-analytics",
+    name: "Southwing Analytics",
+    slug: "bhuwan-ai-analytics",
     country: "US",
     state: null,
-    address: "Northstar Analytics, 55 Market Street, San Francisco, CA, USA",
+    address: "Southwing Analytics, 55 Market Street, San Francisco, CA, USA",
     office: { name: "San Francisco", lat: 37.7749, lng: -122.4194, radiusMeters: 250 },
     departments: ["Research", "Operations"],
-    admin: { firstName: "Olivia", lastName: "Reed" },
+    admin: { firstName: "Riya", lastName: "Pant" },
     people: [
-      { key: "lead", firstName: "Ethan", lastName: "Brooks", dept: "Research", type: "FULL_TIME", designation: "Research Lead", basic: 11000, role: "MANAGER", joinedDaysAgo: 800 },
-      { key: "r1", firstName: "Mia", lastName: "Cole", dept: "Research", type: "FULL_TIME", designation: "Research Scientist", basic: 9000, reportsTo: "lead", joinedDaysAgo: 350 },
-      { key: "ops", firstName: "Noah", lastName: "Patel", dept: "Operations", type: "FULL_TIME", designation: "Operations Manager", basic: 8500, joinedDaysAgo: 250 },
-      { key: "r2", firstName: "Ava", lastName: "Martin", dept: "Research", type: "FULL_TIME", designation: "Data Analyst", basic: 7200, reportsTo: "lead", joinedDaysAgo: 180 },
-      { key: "ops2", firstName: "Lucas", lastName: "Green", dept: "Operations", type: "FULL_TIME", designation: "Operations Associate", basic: 5900, reportsTo: "ops", joinedDaysAgo: 120 },
+      { key: "lead", firstName: "Arnav", lastName: "Khanna", dept: "Research", type: "FULL_TIME", designation: "Research Lead", basic: 11000, role: "MANAGER", joinedDaysAgo: 800 },
+      { key: "r1", firstName: "Ananya", lastName: "Iyer", dept: "Research", type: "FULL_TIME", designation: "Research Scientist", basic: 9000, reportsTo: "lead", joinedDaysAgo: 350 },
+      { key: "ops", firstName: "Vivek", lastName: "Sethi", dept: "Operations", type: "FULL_TIME", designation: "Operations Manager", basic: 8500, joinedDaysAgo: 250 },
+      { key: "r2", firstName: "Sneha", lastName: "Rao", dept: "Research", type: "FULL_TIME", designation: "Data Analyst", basic: 7200, reportsTo: "lead", joinedDaysAgo: 180 },
+      { key: "ops2", firstName: "Kabir", lastName: "Jain", dept: "Operations", type: "FULL_TIME", designation: "Operations Associate", basic: 5900, reportsTo: "ops", joinedDaysAgo: 120 },
     ],
   },
 ];
@@ -229,4 +229,77 @@ async function runDemoSeed({ reset = false } = {}) {
   console.log(`\n  Password for every demo account: ${password}${generated ? "  (generated; set DEMO_PASSWORD to choose one)" : ""}\n`);
 }
 
-export { doSeed, runDemoSeed, truncateAll, WORKSPACES, OPERATOR };
+
+/** Non-destructive one-time demo identity migration; keeps all row IDs and relationships. */
+async function runSouthwingRename() {
+  if (process.env.NODE_ENV === "production") throw new Error("Demo migration is disabled in production.");
+  const sys = systemRepos();
+  const original = await sys.organizations.findOne((o: any) => o.slug === "northstar-analytics");
+  const renamed = await sys.organizations.findOne((o: any) => o.slug === "bhuwan-ai-analytics");
+  if (!original) {
+    if (renamed) {
+      console.log("[southwing] Workspace already renamed; nothing to do.");
+      return;
+    }
+    throw new Error("Expected old Northstar Analytics workspace not found; no data changed.");
+  }
+  if (renamed) throw new Error("Both old and new workspace slugs exist; no data changed.");
+
+  const r = repos({ orgId: original.id });
+  const people = [
+    ["Ethan", "Brooks", "Arnav", "Khanna"],
+    ["Mia", "Cole", "Ananya", "Iyer"],
+    ["Noah", "Patel", "Vivek", "Sethi"],
+    ["Ava", "Martin", "Sneha", "Rao"],
+    ["Lucas", "Green", "Kabir", "Jain"],
+  ];
+  const oldAdmin = "olivia.reed@northstar-analytics.systems.com";
+  const newAdmin = "riya.pant@bhuwan-ai-analytics.systems.com";
+  const admin = await r.users.findOne((u: any) => u.email === oldAdmin);
+  if (!admin) throw new Error(`Old admin ${oldAdmin} not found; no data changed.`);
+  const plan: { emp: any; user: any; email: string; first: string; last: string }[] = [];
+  for (const [oldFirst, oldLast, first, last] of people) {
+    const oldEmail = `${oldFirst}.${oldLast}@northstar-analytics.systems.com`.toLowerCase();
+    const email = `${first}.${last}@bhuwan-ai-analytics.systems.com`.toLowerCase();
+    const emp = await r.employees.findOne((e: any) => e.email === oldEmail);
+    const user = await r.users.findOne((u: any) => u.email === oldEmail);
+    if (!emp || !user) throw new Error(`Expected demo employee/user ${oldEmail} not found; no data changed.`);
+    plan.push({ emp, user, email, first, last });
+  }
+  if (await r.users.findOne((u: any) => u.email === newAdmin)) throw new Error("New admin already exists; no data changed.");
+  for (const p of plan) if (await r.users.findOne((u: any) => u.email === p.email)) throw new Error(`New email already exists: ${p.email}`);
+
+  await r.users.update(admin.id, { email: newAdmin, name: "Riya Pant" });
+  for (const p of plan) {
+    await r.employees.update(p.emp.id, {
+      firstName: p.first, lastName: p.last, email: p.email, officialEmail: p.email,
+    });
+    await r.users.update(p.user.id, { name: `${p.first} ${p.last}`, email: p.email });
+  }
+  const vendors = await r.vendors.all();
+  for (const v of vendors) {
+    if (typeof v.email === "string" && v.email.includes("northstar-analytics")) {
+      const previousEmail = v.email;
+      const updatedEmail = previousEmail.replaceAll("northstar-analytics", "bhuwan-ai-analytics");
+      await r.vendors.update(v.id, { email: updatedEmail });
+      const vendorLogin = await r.users.findOne(
+        (u: any) => u.vendorId === v.id && u.email === previousEmail,
+      );
+      if (vendorLogin) {
+        await r.users.update(vendorLogin.id, { email: updatedEmail });
+      }
+    }
+  }
+  await sys.organizations.update(original.id, {
+    name: "Southwing Analytics", slug: "bhuwan-ai-analytics",
+    legalName: "Southwing Analytics Private Limited",
+    address: String(original.address || "").replaceAll("Northstar Analytics", "Southwing Analytics"),
+    officialEmailDomain: "bhuwan-ai-analytics.systems.com",
+    website: "https://bhuwan-ai-analytics.systems.com",
+    signatory: { name: "Riya Pant", title: "Head of People" },
+  });
+  console.log(`[southwing] Updated workspace and ${plan.length} employee identities, preserving record IDs.`);
+  console.log(`[southwing] Admin: ${newAdmin}; existing demo password unchanged.`);
+}
+
+export { doSeed, runDemoSeed, runSouthwingRename, truncateAll, WORKSPACES, OPERATOR };

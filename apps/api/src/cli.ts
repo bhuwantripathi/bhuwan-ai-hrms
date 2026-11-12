@@ -13,7 +13,7 @@ import { systemRepos } from "./repositories/base.repository";
 import { hashPw } from "./middleware/platform-auth";
 import { pool } from "./db/kysely";
 import { EMAIL_RE } from "./core/validate";
-import { runDemoSeed } from "./demo/seed";
+import { runDemoSeed, runSouthwingRename } from "./demo/seed";
 
 function arg(name: string): string | undefined {
   const i = process.argv.indexOf(`--${name}`);
@@ -37,6 +37,7 @@ async function operatorCreate() {
 const commands: Record<string, () => Promise<void>> = {
   "operator:create": operatorCreate,
   "demo:seed": () => runDemoSeed({ reset: process.argv.includes("--reset") }),
+  "demo:rename-southwing": runSouthwingRename,
 };
 
 const cmd = process.argv[2];
